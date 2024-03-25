@@ -1,0 +1,12 @@
+{
+  "name": "miniflare",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "miniflare --modules -p $PORT --watch index.js"
+  },
+  "dependencies": {
+    "miniflare": "^2.14.2"
+  }
+}
