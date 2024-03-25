@@ -1,7 +1,7 @@
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    url.port = '3020';
+    url.port = '3200';
 
     if (url.pathname === '/_next/webpack-hmr') {
       const response = await fetch(url.toString(), {

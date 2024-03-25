@@ -3,6 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "overmind start -p 3000 -P 10"
+    "start": "overmind start -p 3000"
   }
 }
