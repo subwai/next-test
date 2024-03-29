@@ -1,9 +1,9 @@
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    url.port = '3200';
+    url.port = "3200";
 
-    if (url.pathname === '/_next/webpack-hmr') {
+    if (url.pathname === "/_next/webpack-hmr") {
       const response = await fetch(url.toString(), {
         headers: { Upgrade: "websocket" },
       });
@@ -13,10 +13,10 @@ export default {
       });
     }
 
-    let response = await fetch(url.toString());
-    let { readable, writable } = new TransformStream();
-    response.body.pipeTo(writable);
+    const headers = new Headers(request.headers);
+    headers.delete("accept-encoding");
+    let response = await fetch(url, { headers });
 
-    return new Response(readable, response);
+    return new Response(response.body, response);
   },
 };

@@ -5,7 +5,7 @@ export default {
 
     if (url.pathname === '/_next/webpack-hmr') {
       const response = await fetch(url.toString(), {
-        headers: { Upgrade: "websocket" },
+        headers: { Upgrade: 'websocket' },
       });
       return new Response(null, {
         status: 101,
@@ -13,10 +13,10 @@ export default {
       });
     }
 
-    let response = await fetch(url.toString());
-    let { readable, writable } = new TransformStream();
-    response.body.pipeTo(writable);
+    const headers = new Headers(request.headers);
+    headers.delete('accept-encoding');
+    let response = await fetch(url, { headers });
 
-    return new Response(readable, response);
+    return new Response(response.body, response);
   },
 };
